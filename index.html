@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prográmate | Eventos Anteriores</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6C63FF',
+                        secondary: '#FF6584',
+                        accent: '#FFD93D',
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                        'text-shimmer': 'textShimmer 3s ease-in-out infinite alternate',
+                        'shine': 'shine 3s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        textShimmer: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '100%': { backgroundPosition: '100% 50%' },
+                        },
+                        shine: {
+                            '0%': { left: '-100%' },
+                            '20%': { left: '100%' },
+                            '100%': { left: '100%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #6C63FF; border-radius: 4px; }
+
+        /* Super Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden; 
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(255, 255, 255, 1);
+            z-index: 10;
+            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.1);
+        }
+
+        /* Shine Effect */
+        .glass-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transform: skewX(-25deg);
+            z-index: 10;
+            transition: 0s; 
+            pointer-events: none;
+        }
+
+        .glass-card:hover::after {
+            left: 200%;
+            transition: 0.75s ease-in-out;
+        }
+
+        /* Animated Background Blobs */
+        .blob-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: #fff;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.8;
+            mix-blend-mode: multiply; 
+            animation: blob 15s infinite alternate;
+        }
+
+        /* Shine Effect for Buttons */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            animation: shine 4s infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased min-h-screen relative selection:bg-accent selection:text-black">
+
+    <!-- Dynamic Background -->
+    <div class="blob-container">
+        <div class="blob bg-purple-300 w-96 h-96 top-0 left-0 animate-blob"></div>
+        <div class="blob bg-pink-300 w-96 h-96 bottom-0 right-0 animate-blob" style="animation-delay: 2s"></div>
+        <div class="blob bg-cyan-200 w-80 h-80 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-blob" style="animation-delay: 4s"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-12 relative z-10">
+        
+        <!-- Header -->
+        <header class="mb-8 md:mb-12 text-center opacity-0 animate-fade-up">
+            <h1 class="text-3xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-secondary animate-text-shimmer bg-[length:200%_auto]">
+                    Eventos Anteriores
+                </span>
+            </h1>
+            <div class="h-1 w-16 md:w-24 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+            <p class="mt-4 text-gray-500 font-medium max-w-xl mx-auto text-sm md:text-base">
+                Revive los mejores momentos de las actividades que hemos compartido en nuestra comunidad universitaria.
+            </p>
+        </header>
+
+        <!-- Events Grid (Fixed 3 columns always) -->
+        <div id="events-grid" class="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8">
+            <!-- Cards will be injected here via JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-20">
+            <div class="text-4xl md:text-6xl mb-4 text-gray-300">🍃</div>
+            <h3 class="text-xl md:text-2xl font-bold text-gray-400">Aún no hay eventos pasados...</h3>
+        </div>
+
+    </div>
+
+    <!-- Logic -->
+    <script>
+        // --- Configuration ---
+        const categoryConfig = {
+            ecologica: { label: 'Ecológica', icon: 'fa-leaf', color: 'green', gradient: 'from-green-400 to-emerald-600' },
+            cultural: { label: 'Cultural', icon: 'fa-palette', color: 'orange', gradient: 'from-orange-400 to-red-500' },
+            socioeconomica: { label: 'Socioeconómica', icon: 'fa-handshake', color: 'yellow', gradient: 'from-yellow-400 to-amber-600' },
+            espiritual: { label: 'Espiritual', icon: 'fa-praying-hands', color: 'purple', gradient: 'from-purple-400 to-violet-600' },
+            psicoafectiva: { label: 'Psicoafectiva', icon: 'fa-heart', color: 'pink', gradient: 'from-pink-400 to-rose-600' },
+            acompanamiento: { label: 'Acompañamiento', icon: 'fa-users', color: 'blue', gradient: 'from-blue-400 to-indigo-600' },
+            fisica: { label: 'Física', icon: 'fa-running', color: 'red', gradient: 'from-red-400 to-rose-600' },
+            pastoral: { label: 'Pastoral', icon: 'fa-dove', color: 'indigo', gradient: 'from-indigo-400 to-blue-600' },
+            default: { label: 'Evento', icon: 'fa-calendar-day', color: 'gray', gradient: 'from-gray-400 to-gray-600' }
+        };
+
+        // --- Data (Eventos Anteriores con fechas pasadas y CTAs acordes) ---
+        const initialEvents = [
+            { 
+                id: 1, 
+                title: "Catequesis sobre el sentido de la Cuaresma", 
+                description: "Es una oportunidad de gracia, de conversión profunda y de preparación espiritual para vivir la alegría de la Pascua.",
+                category: "espiritual", 
+                date: "2023-10-15", 
+                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1000&auto=format&fit=crop", 
+                link: "https://youtu.be/kemPotKJ-Xg", 
+                cta: "Ver catequesis"
+        ];
+
+        let events = [...initialEvents];
+
+        // --- DOM Elements ---
+        const grid = document.getElementById('events-grid');
+        const emptyState = document.getElementById('empty-state');
+
+        // --- Formatting Functions ---
+        const getMonth = (dateStr) => new Date(dateStr).toLocaleDateString('es-ES', {month: 'short'}).replace('.', '').toUpperCase();
+        const getDay = (dateStr) => new Date(dateStr).getDate() + 1; // Ajuste zona horaria simple
+
+        // --- Render Function ---
+        const renderEvents = () => {
+            grid.innerHTML = '';
+            
+            if (events.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                
+                events.forEach((event, index) => {
+                    const config = categoryConfig[event.category] || categoryConfig.default;
+                    
+                    const card = document.createElement('div');
+                    card.style.animationDelay = `${index * 150}ms`;
+                    
+                    card.className = 'glass-card rounded-xl md:rounded-[2rem] overflow-hidden flex flex-col w-full h-full group opacity-0 animate-fade-up border-transparent';
+                    
+                    card.innerHTML = `
+                        <!-- Imagen: relación de aspecto 4/3 -->
+                        <div class="relative w-full aspect-[4/3] md:h-48 md:aspect-auto overflow-hidden shrink-0 filter grayscale-[20%] group-hover:grayscale-0 transition-all duration-500">
+                            <img src="${event.image}" alt="${event.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            
+                            <!-- Modern Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80"></div>
+
+                            <!-- Category Badge -->
+                            <div class="absolute top-2 right-2 md:top-4 md:right-4 bg-white/90 backdrop-blur-sm text-[8px] md:text-xs font-bold px-2 py-1 md:px-3 md:py-1.5 rounded-full shadow-lg flex items-center gap-1 md:gap-1.5 text-gray-800 border border-white z-10">
+                                <i class="fas ${config.icon} text-${config.color}-500 text-[8px] md:text-xs"></i> 
+                                <span class="hidden md:inline">${config.label}</span> 
+                                <span class="md:hidden truncate max-w-[50px]">${config.label}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Contenido -->
+                        <div class="p-2 md:p-6 flex-1 flex flex-col relative bg-white/40">
+                            
+                            <!-- Fecha Flotante -->
+                            <div class="absolute -top-4 md:-top-8 left-2 md:left-6 bg-white rounded-lg md:rounded-xl shadow-md p-0.5 md:p-1 text-center w-10 h-10 md:w-16 md:h-16 flex flex-col justify-center items-center border border-gray-100 group-hover:-translate-y-1 md:group-hover:-translate-y-2 transition-transform duration-300 z-10">
+                                <span class="text-[7px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-px md:mb-0.5">${getMonth(event.date)}</span>
+                                <span class="text-sm md:text-2xl font-black text-gray-800 leading-none">${getDay(event.date)}</span>
+                            </div>
+
+                            <!-- Título -->
+                            <div class="mt-7 md:mt-8 mb-1 md:mb-2">
+                                <h3 class="text-[10px] md:text-xl font-bold text-gray-800 leading-tight group-hover:text-${config.color}-600 transition-colors duration-300 line-clamp-3 md:line-clamp-2" title="${event.title}">
+                                    ${event.title}
+                                </h3>
+                            </div>
+
+                            <!-- Descripción: Toma un poco más de protagonismo ya que no hay info técnica -->
+                            <div class="mb-4 md:mb-6 flex-1">
+                                <p class="text-[9px] md:text-sm text-gray-500 font-medium leading-relaxed line-clamp-4 md:line-clamp-3">
+                                    ${event.description || 'Descripción breve disponible.'}
+                                </p>
+                            </div>
+                            
+                            <!-- Botón de Acción -->
+                            <div class="mt-auto relative z-20">
+                                <a href="${event.link}" target="_blank" class="btn-shine relative overflow-hidden w-full block text-center text-white font-bold py-1.5 md:py-3 rounded-lg md:rounded-2xl transition-all duration-300 transform group-hover:scale-[1.02] shadow-sm md:shadow-md group-hover:shadow-lg bg-gradient-to-r ${config.gradient}">
+                                    <span class="relative z-10 flex items-center justify-center gap-1 md:gap-2">
+                                        <span class="text-[9px] md:text-base">Ver video</span> 
+                                        <i class="fas fa-play text-[8px] md:text-sm transition-transform group-hover:scale-110"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        };
+
+        renderEvents();
+
+    </script>
+</body>
+</html>
